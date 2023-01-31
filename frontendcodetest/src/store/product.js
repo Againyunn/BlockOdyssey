@@ -1,18 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const productReducer = createSlice({
-  name: "products",
-  initialState: { products: false },
+export const searchProductReducer = createSlice({
+  name: "searchProduct",
+  initialState: { filter: false, search: false },
   reducers: {
-    getProductData: (state, action) => {
-      state.products = action.payload;
+    setFilterData: (state, action) => {
+      state.filter = action.payload;
     },
-    clearProductData: (state) => {
-      state.products = false;
+    setSearchData: (state, action) => {
+      state.search = action.payload;
+    },
+    clearAllData: (state) => {
+      state.filter = false;
+      state.search = false;
     },
   },
 });
 
-export const { getProductData, clearProductData } = productReducer.actions;
+export const { setFilterData, setSearchData, clearProductData } =
+  searchProductReducer.actions;
 
-export default productReducer.reducer;
+export default searchProductReducer.reducer;
