@@ -2,6 +2,43 @@
 
 // 버튼 정의
 .default-button {
+  width: 70px;
+  height: 35px;
+  padding: 6px;
+  font-size: $default-font-size;
   color: $white;
+  text-align: center;
+  border-radius: $default-border-radius;
+  border: 1px solid $black;
   background-color: $black;
+  &:hover {
+    border: 1px solid $black;
+    box-shadow: $confirm-button-box-shadow-effect;
+    cursor: pointer;
+  }
+  &:focus {
+    border: 1px solid $black;
+    box-shadow: $confirm-button-box-shadow-effect;
+  }
+}
+
+// 밑줄 정의
+.horizon-line {
+  border-bottom: 1px solid $gray;
+}
+
+// 폰트 크기 조절
+.title-text {
+  font-weight: 500;
+  font-size: $title-font-size;
+}
+
+.bord-text {
+  font-weight: 500;
+  font-size: $default-font-size;
+}
+
+.default-text {
+  font-weight: 200;
+  font-size: $default-font-size;
 }
