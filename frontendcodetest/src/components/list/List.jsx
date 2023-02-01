@@ -28,7 +28,7 @@ function List(props) {
         <th className="list-table-header width-middle horizon-line">
           <span className="bord-text">상품번호</span>
         </th>
-        <th className="list-table-header width-large horizon-line">
+        <th className="list-table-header width-extra-large horizon-line">
           <span className="bord-text">상품명</span>
         </th>
         <th className="list-table-header width-large horizon-line">
