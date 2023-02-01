@@ -6,13 +6,18 @@ import PaginationFilter from "components/pagination/PaginationFilter";
 // style
 import "static/style/css/pagination.css";
 
-function Pagination({ pages, setCurrentPage, selectedPageNumber }) {
+function Pagination({
+  getPages, // 부모 -> 자식
+  setCurrentPage, // 자식 ->  부모 전달
+  getSelectedPageNumber, // 부모 -> 자식 전달
+  getCurrentPageNumber, // 부모 -> 자식 전달
+}) {
   // state
   const [selectedButton, setSelectedButton] = useState(1); // 현재 선택된 버튼
   const [currentButtonArray, setCurrentButtonArray] = useState([]); // 현재 표시될 페이지 번호들
 
   const pageNumberArray = [];
-  for (let i = 1; i <= pages; i++) {
+  for (let i = 1; i <= getPages; i++) {
     pageNumberArray.push(i);
   }
 
@@ -63,11 +68,15 @@ function Pagination({ pages, setCurrentPage, selectedPageNumber }) {
 
     setCurrentButtonArray(tmpPageNumberArray);
     setCurrentPage(selectedButton);
-  }, [selectedButton, pages]);
+  }, [selectedButton, getPages]);
+
+  useEffect(() => {
+    setSelectedButton(getCurrentPageNumber);
+  }, [getCurrentPageNumber]);
 
   return (
     <div className="pagination-wrap">
-      <PaginationFilter selectedNumber={selectedPageNumber} />
+      <PaginationFilter selectedNumber={getSelectedPageNumber} />
       <button
         className="pagination-button"
         onClick={() => setSelectedButton(1)}
