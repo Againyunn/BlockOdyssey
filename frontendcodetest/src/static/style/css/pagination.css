@@ -1,0 +1,113 @@
+@charset "UTF-8";
+.pagination-wrap {
+  display: flex;
+}
+
+.pagination-button {
+  position: relative;
+  margin: 0px 3px;
+  padding: 20px;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.pagination-button-text {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-animation: animate 1s linear;
+          animation: animate 1s linear;
+}
+
+@-webkit-keyframes animate {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+@keyframes animate {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+.is-selected {
+  background-color: #eee;
+}
+
+.pagination-select-box-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-select-box {
+  position: relative;
+  width: 50px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  align-self: center;
+  cursor: pointer;
+}
+.pagination-select-box::before {
+  content: "▾";
+  position: absolute;
+  top: 1px;
+  right: 8px;
+  color: #000;
+  font-size: 20px;
+}
+.pagination-select-box .pagination-select-label {
+  font-size: 14px;
+  margin-left: 4px;
+  text-align: center;
+}
+.pagination-select-box .pagination-select-options {
+  text-align: center;
+  position: absolute;
+  list-style: none;
+  bottom: 36px;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #ccc;
+  overflow: hidden;
+}
+.pagination-select-box .pagination-each-option {
+  font-size: 14px;
+  padding: 10px 8px;
+  transition: background-color 0.2s ease-in;
+}
+.pagination-select-box .pagination-each-option:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+.pagination-select-box .hidden {
+  max-height: none;
+}
+.pagination-select-box .show {
+  max-height: 0;
+}/*# sourceMappingURL=pagination.css.map */

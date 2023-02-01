@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-function Pagination({ pages, setCurrentPage }) {
+// components
+import PaginationFilter from "components/pagination/PaginationFilter";
+
+// style
+import "static/style/css/pagination.css";
+
+function Pagination({ pages, setCurrentPage, selectedPageNumber }) {
   // state
   const [selectedButton, setSelectedButton] = useState(1); // 현재 선택된 버튼
   const [currentButtonArray, setCurrentButtonArray] = useState([]); // 현재 표시될 페이지 번호들
@@ -60,27 +66,39 @@ function Pagination({ pages, setCurrentPage }) {
   }, [selectedButton, pages]);
 
   return (
-    <div>
+    <div className="pagination-wrap">
+      <PaginationFilter selectedNumber={selectedPageNumber} />
       <button
+        className="pagination-button"
         onClick={() =>
           setSelectedButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
       >
-        전
+        <span className="pagination-button-text">전</span>
       </button>
 
-      {currentButtonArray.map((el) => {
-        return <button onClick={() => setSelectedButton(el)}>{el}</button>;
+      {currentButtonArray.map((el, idx) => {
+        return (
+          <button
+            className={`pagination-button ${
+              selectedButton === idx + 1 ? "is-selected" : ""
+            }`}
+            onClick={() => setSelectedButton(el)}
+          >
+            <span className="pagination-button-text">{el}</span>
+          </button>
+        );
       })}
 
       <button
+        className="pagination-button"
         onClick={() =>
           setSelectedButton((prev) =>
             prev >= pageNumberArray.length ? prev : prev + 1
           )
         }
       >
-        후
+        <span className="pagination-button-text">후</span>
       </button>
     </div>
   );
