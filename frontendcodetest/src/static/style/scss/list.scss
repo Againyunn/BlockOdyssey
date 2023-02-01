@@ -12,19 +12,23 @@
   }
 
   .list-table-body {
-    height: 40px;
+    height: 50px;
     line-height: 70px;
     text-align: center;
   }
 }
 
 // 크기 조정
-.width-large {
+.width-extra-large {
   width: 150px;
 }
 
+.width-large {
+  width: 60px;
+}
+
 .width-middle {
-  width: 50px;
+  width: 40px;
 }
 
 .width-small {

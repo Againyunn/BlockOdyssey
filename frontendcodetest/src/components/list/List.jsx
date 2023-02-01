@@ -26,9 +26,11 @@ function List(props) {
         <th className="list-table-header width-middle horizon-line">
           상품번호
         </th>
-        <th className="list-table-header width-middle horizon-line">상품명</th>
-        <th className="list-table-header width-middle horizon-line">브랜드</th>
-        <th className="list-table-header width-large horizon-line">상품내용</th>
+        <th className="list-table-header width-large horizon-line">상품명</th>
+        <th className="list-table-header width-large horizon-line">브랜드</th>
+        <th className="list-table-header width-extra-large horizon-line">
+          상품내용
+        </th>
         <th className="list-table-header width-small horizon-line">가격</th>
         <th className="list-table-header width-small horizon-line">평점</th>
         <th className="list-table-header width-small horizon-line">재고</th>
