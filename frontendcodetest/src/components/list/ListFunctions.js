@@ -32,6 +32,7 @@ export const extractData = (filter, search, data) => {
       if (!search) return data;
       else {
         data.map((item) => {
+          console.log("item", item);
           if (getKeyByValue(item, convertedSearch)) result.push(item);
         });
       }
@@ -44,7 +45,7 @@ const changeToLowerCase = (data) => {
 };
 
 const getKeyByValue = (object, value) => {
-  return Object.keys(object).find(
-    (key) => changeToLowerCase(object[key].toString()) === value
+  return Object.keys(object).find((key) =>
+    changeToLowerCase(object[key].toString()).includes(value)
   );
 };
