@@ -5,7 +5,7 @@
   flex-direction: column;
   border-radius: $round-border-radius;
   border: 1px solid $gray;
-  box-shadow: 2px 2px 2px $dark-gray;
+  box-shadow: 0px 2px 2px $dark-gray;
   background-color: $white;
 
   .search-content-wrap {
@@ -105,11 +105,11 @@
   padding: 0px 10px;
   &:hover {
     border: 1px solid $gray;
-    box-shadow: $confirm-button-box-shadow-effect;
+    box-shadow: $hover-box-shadow-effect;
     cursor: pointer;
   }
   &:focus {
     border: 1px solid $gray;
-    box-shadow: $confirm-button-box-shadow-effect;
+    box-shadow: $hover-box-shadow-effect;
   }
 }
