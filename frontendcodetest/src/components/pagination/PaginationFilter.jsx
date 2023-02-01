@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import "static/style/css/common.css";
 import "static/style/css/pagination.css";
 
+// image
+import downTriangle from "assets/icon/down-triangle.png";
+
 function PaginationFilter({ selectedNumber }) {
   const [isShowOptions, setShowOptions] = useState(false);
   const [currentOptionLabel, setCurrentOptionLabel] = useState(optionList[0]);
@@ -35,7 +38,16 @@ function PaginationFilter({ selectedNumber }) {
         className="pagination-select-box"
         onClick={() => setShowOptions((prev) => !prev)}
       >
-        <label className="pagination-select-label">{currentOptionLabel}</label>
+        <div className="pagination-select-label">
+          <label>{currentOptionLabel}</label>
+          <img
+            src={downTriangle}
+            alt=""
+            className={`pagination-arrow-icon ${
+              isShowOptions ? "reversed" : ""
+            }`}
+          />
+        </div>
         <ul
           className={`pagination-select-options ${
             isShowOptions ? "hidden" : "show"

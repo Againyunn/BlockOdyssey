@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .pagination-wrap {
   display: flex;
 }
@@ -53,65 +52,31 @@
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  -webkit-animation: animate 1s linear;
-          animation: animate 1s linear;
 }
 
-@-webkit-keyframes animate {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 0.5;
-  }
-  100% {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
-}
-
-@keyframes animate {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 0.5;
-  }
-  100% {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
-}
 .is-selected {
   background-color: #eee;
 }
 
+/* PaginationFilter */
 .pagination-select-box-wrap {
   display: flex;
   align-items: center;
+  margin-left: 10px;
 }
 
 .pagination-select-box {
   position: relative;
-  width: 50px;
+  width: 30px;
   padding: 8px;
   border-radius: 4px;
   background-color: #fff;
   align-self: center;
   cursor: pointer;
 }
-.pagination-select-box::before {
-  content: "▾";
-  position: absolute;
-  top: 1px;
-  right: 8px;
-  color: #000;
-  font-size: 20px;
-}
 .pagination-select-box .pagination-select-label {
   font-size: 13px;
-  margin-left: 4px;
-  text-align: center;
+  cursor: pointer;
 }
 .pagination-select-box .pagination-select-options {
   text-align: center;
@@ -125,15 +90,32 @@
   background-color: #fff;
   box-shadow: 0px 4px 4px #ccc;
   overflow: hidden;
+  cursor: pointer;
 }
 .pagination-select-box .pagination-each-option {
   font-size: 13px;
   padding: 10px 8px;
   transition: background-color 0.2s ease-in;
+  cursor: pointer;
 }
 .pagination-select-box .pagination-each-option:hover {
   background-color: #ccc;
+}
+.pagination-select-box .pagination-arrow-icon {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  z-index: 1;
+  width: 10px;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: opacity(0.9) drop-shadow(0 0 0 #ccc);
   cursor: pointer;
+}
+.pagination-select-box .reversed {
+  transform: rotate(180deg);
 }
 .pagination-select-box .hidden {
   max-height: none;
