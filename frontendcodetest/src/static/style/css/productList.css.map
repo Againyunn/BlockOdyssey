@@ -1,1 +1,1 @@
-{"version":3,"sources":["../scss/productList.scss","productList.css","../_variable.scss"],"names":[],"mappings":"AAEA;EACE,sBAAA;EACA,8BAAA;EACA,aAAA;ACDF;;ADIA;EACE,aAAA;EACA,aAAA;EACA,uBAAA;EACA,sBEXM;EFYN,8BEHsB;EFItB,gCEHoB;ADEtB","file":"productList.css"}
+{"version":3,"sources":["../scss/productList.scss","productList.css","../_variable.scss"],"names":[],"mappings":"AAEA;EACE,sBAAA;EACA,8BAAA;EACA,aAAA;ACDF;;ADIA;EACE,aAAA;EACA,aAAA;EACA,uBAAA;EACA,sBEXM;EFYN,+BEDoB;EFEpB,gCEFoB;EFGpB,4BAAA;ACDF","file":"productList.css"}

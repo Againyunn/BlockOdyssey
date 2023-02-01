@@ -2,7 +2,7 @@
   width: 60px;
   height: 33px;
   padding: 6px;
-  font-size: 12px;
+  font-size: 13px;
   color: #fff;
   text-align: center;
   border-radius: 4px;
@@ -11,12 +11,12 @@
 }
 .default-button:hover {
   border: 1px solid #000;
-  box-shadow: 0px 0px 3px 3px #eee;
+  box-shadow: 0px 0px 3px 3px #ccc;
   cursor: pointer;
 }
 .default-button:focus {
   border: 1px solid #000;
-  box-shadow: 0px 0px 3px 3px #eee;
+  box-shadow: 0px 0px 3px 3px #ccc;
 }
 
 .horizon-line {
@@ -30,12 +30,12 @@
 
 .bord-text {
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .default-text {
   font-weight: 200;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .interval-height-bottom-defualt {

@@ -5,7 +5,8 @@ $gray: #eee;
 $dark-gray: #ccc;
 
 // hover effect
-$confirm-button-box-shadow-effect: 0px 0px 3px 3px $gray;
+$hover-box-shadow-effect: 0px 0px 3px 3px $gray;
+$confirm-button-box-shadow-effect: 0px 0px 3px 3px $dark-gray;
 
 // border-radius
 $default-border-radius: 4px;
@@ -13,4 +14,4 @@ $round-border-radius: 10px;
 
 // font-size
 $title-font-size: 15px;
-$default-font-size: 12px;
+$default-font-size: 13px;

@@ -19,21 +19,33 @@ function List(props) {
   return (
     <React.Fragment>
       <div className="search-data-length-text interval-height-bottom-defualt">
-        <span>검색된 데이터: {props.productDataLength}건</span>
+        <span className="bord-text">
+          검색된 데이터: {props.productDataLength}건
+        </span>
       </div>
 
       <table className="list-table-wrap ">
         <th className="list-table-header width-middle horizon-line">
-          상품번호
+          <span className="bord-text">상품번호</span>
         </th>
-        <th className="list-table-header width-large horizon-line">상품명</th>
-        <th className="list-table-header width-large horizon-line">브랜드</th>
+        <th className="list-table-header width-large horizon-line">
+          <span className="bord-text">상품명</span>
+        </th>
+        <th className="list-table-header width-large horizon-line">
+          <span className="bord-text">브랜드</span>
+        </th>
         <th className="list-table-header width-extra-large horizon-line">
-          상품내용
+          <span className="bord-text">상품내용</span>
         </th>
-        <th className="list-table-header width-small horizon-line">가격</th>
-        <th className="list-table-header width-small horizon-line">평점</th>
-        <th className="list-table-header width-small horizon-line">재고</th>
+        <th className="list-table-header width-small horizon-line">
+          <span className="bord-text">가격</span>
+        </th>
+        <th className="list-table-header width-small horizon-line">
+          <span className="bord-text">평점</span>
+        </th>
+        <th className="list-table-header width-small horizon-line">
+          <span className="bord-text">재고</span>
+        </th>
         {!!products &&
           products.map((el) => {
             let thisDescription = !el.description
@@ -45,17 +57,32 @@ function List(props) {
 
             return (
               <tr>
-                <td className="list-table-body horizon-line">{el.id}</td>
-                <td className="list-table-body horizon-line">{el.title}</td>
-                <td className="list-table-body horizon-line">{el.brand}</td>
-
                 <td className="list-table-body horizon-line">
-                  {thisDescription}
+                  <span className="default-text">{el.id}</span>
+                </td>
+                <td className="list-table-body horizon-line">
+                  <span className="default-text">{el.title}</span>
+                </td>
+                <td className="list-table-body horizon-line">
+                  <span className="default-text">{el.brand}</span>
                 </td>
 
-                <td className="list-table-body horizon-line">{thisPrice}</td>
-                <td className="list-table-body horizon-line">{thisRating}</td>
-                <td className="list-table-body horizon-line">{thisStock}</td>
+                <td className="list-table-body horizon-line">
+                  <span className="default-text">{thisDescription}</span>
+                </td>
+
+                <td className="list-table-body horizon-line">
+                  {" "}
+                  <span className="default-text">{thisPrice}</span>
+                </td>
+                <td className="list-table-body horizon-line">
+                  {" "}
+                  <span className="default-text">{thisRating}</span>
+                </td>
+                <td className="list-table-body horizon-line">
+                  {" "}
+                  <span className="default-text">{thisStock}</span>
+                </td>
               </tr>
             );
           })}
