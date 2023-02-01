@@ -6,16 +6,46 @@
 .pagination-button {
   position: relative;
   margin: 0px 3px;
-  padding: 20px;
-  color: #000;
+  padding: 2px;
+  width: 30px;
+  height: 30px;
   text-transform: uppercase;
-  font-size: 12px;
   letter-spacing: 2px;
   border-radius: 4px;
   background-color: #fff;
   overflow: hidden;
   border: 1px solid #ccc;
   outline: none;
+  cursor: pointer;
+}
+
+.none-button {
+  position: relative;
+  margin: 0px 3px;
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  width: 15px;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: opacity(0.5) drop-shadow(0 0 0 #ccc);
+}
+
+.reversed {
+  transform: rotate(180deg);
 }
 
 .pagination-button-text {
@@ -79,7 +109,7 @@
   font-size: 20px;
 }
 .pagination-select-box .pagination-select-label {
-  font-size: 14px;
+  font-size: 13px;
   margin-left: 4px;
   text-align: center;
 }
@@ -97,7 +127,7 @@
   overflow: hidden;
 }
 .pagination-select-box .pagination-each-option {
-  font-size: 14px;
+  font-size: 13px;
   padding: 10px 8px;
   transition: background-color 0.2s ease-in;
 }

@@ -8,7 +8,11 @@ import "static/style/css/pagination.css";
 
 // store
 import { useDispatch, useSelector } from "react-redux";
-import { setTotalPages, setSelectedPage, setShowItems } from "store/pagination";
+import { setSelectedPage, setShowItems } from "store/pagination";
+
+// image
+import nextArrow from "assets/icon/next-arrow.png";
+import edgeArrow from "assets/icon/edge-arrow.png";
 
 function Pagination(props) {
   // state
@@ -33,8 +37,8 @@ function Pagination(props) {
   useEffect(() => {
     let tmpPageNumberArray = [...currentButtonArray];
 
-    let leftDots = "...";
-    let rightDots = "...";
+    let leftDots = "... ";
+    let rightDots = " ...";
 
     // 페이지 번호 배열 내 ... 의 유무 식별
     if (pageNumberArray.length < 7) {
@@ -76,12 +80,16 @@ function Pagination(props) {
     }
 
     setCurrentButtonArray(tmpPageNumberArray);
-    handleSetSelectedPage(selectedButton);
   }, [selectedButton, pageNumberArray]);
 
   useEffect(() => {
     setSelectedButton(paginationData.selectedPage);
   }, [paginationData.selectedPage]);
+
+  useEffect(() => {
+    if (typeof selectedButton !== "string")
+      handleSetSelectedPage(selectedButton);
+  }, [selectedButton]);
 
   return (
     <div className="pagination-wrap">
@@ -90,7 +98,9 @@ function Pagination(props) {
         className="pagination-button"
         onClick={() => setSelectedButton(1)}
       >
-        맨앞
+        <span className="pagination-button-text">
+          <img src={edgeArrow} alt="" className="arrow-icon" />
+        </span>
       </button>
       <button
         className="pagination-button"
@@ -98,20 +108,29 @@ function Pagination(props) {
           setSelectedButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
       >
-        <span className="pagination-button-text">전</span>
+        <span className="pagination-button-text">
+          <img src={nextArrow} alt="" className="arrow-icon reversed" />
+        </span>
       </button>
 
       {currentButtonArray.map((el) => {
-        return (
-          <button
-            className={`pagination-button ${
-              selectedButton === el ? "is-selected" : ""
-            }`}
-            onClick={() => setSelectedButton(el)}
-          >
-            <span className="pagination-button-text">{el}</span>
-          </button>
-        );
+        if (el !== "... " && el !== " ...")
+          return (
+            <button
+              className={`pagination-button ${
+                selectedButton === el ? "is-selected" : ""
+              }`}
+              onClick={() => setSelectedButton(el)}
+            >
+              <span className="pagination-button-text">{el}</span>
+            </button>
+          );
+        else
+          return (
+            <div className="none-button" onClick={() => setSelectedButton(el)}>
+              <span className="default-text">{el}</span>
+            </div>
+          );
       })}
 
       <button
@@ -122,13 +141,17 @@ function Pagination(props) {
           )
         }
       >
-        <span className="pagination-button-text">후</span>
+        <span className="pagination-button-text">
+          <img src={nextArrow} alt="" className="arrow-icon" />
+        </span>
       </button>
       <button
         className="pagination-button"
         onClick={() => setSelectedButton(pageNumberArray.length)}
       >
-        맨뒤
+        <span className="pagination-button-text">
+          <img src={edgeArrow} alt="" className="arrow-icon reversed" />
+        </span>
       </button>
     </div>
   );
