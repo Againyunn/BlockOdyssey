@@ -36,7 +36,7 @@ function Search(props) {
   };
 
   return (
-    <div className="search-wrap">
+    <div className="search-wrap interval-height-bottom-defualt">
       <div className="search-content-wrap horizon-line">
         <div className="text-container">
           <span className="title-text">상품 검색</span>
