@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 // store
 import { useDispatch, useSelector } from "react-redux";
 import { setIsActive, setFilterData, setSearchData } from "store/product";
+import { setTotalPages, setSelectedPage, setShowItems } from "store/pagination";
 
 // function
 import { extractData } from "components/list/ListFunctions";
@@ -29,36 +30,35 @@ import "static/style/css/productList.css";
 function Productlist(props) {
   /**STATE */
   const [isUpdated, setIsUpdated] = useState(0);
+  const [isIntialized, setIsInitialIzed] = useState(false);
 
   // product 제어
   const [rawProducts, setRawProducts] = useState([]); // API raw data
   const [products, setProducts] = useState([]); // filtered searched data
   const [currentProducts, setCurrentProducts] = useState([]); // paginated data
 
-  // pagination 제어
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [showProductsOnce, setShowProductOnce] = useState(10); // n개씩 보기
-  const [totalPagesNumber, setTotalPagesNumber] = useState();
-
   // store 제어
-  const searchData = useSelector((state) => state.searchProduct);
   const dispatch = useDispatch();
+
+  // search store
+  const searchData = useSelector((state) => state.searchProduct);
   const handleSetFilterData = (value) => dispatch(setFilterData(value));
   const handleSetSearchData = (value) => dispatch(setSearchData(value));
   const handleSetIsActive = (value) => dispatch(setIsActive(value));
 
-  /**PAGE URL */
-  const PAGE_URL = window.location.origin;
+  // pagination store
+  const paginationData = useSelector((state) => state.pagination);
+  const handleSetTotalPages = (value) => dispatch(setTotalPages(value));
+  const handleSetSelectedPage = (value) => dispatch(setSelectedPage(value));
+  const handleSetShowItems = (value) => dispatch(setShowItems(value));
 
   /** API 데이터 받아오기 */
-  const { isLoading, error, refetch, isSuccess } = useQuery("products", () =>
+  const { isLoading, error, refetch } = useQuery("products", () =>
     getProductData()
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-
         setRawProducts(data.products);
       })
   );
@@ -69,14 +69,14 @@ function Productlist(props) {
     }
 
     if (searchData.isActive) {
-      console.log("* main", searchData, currentPage);
       refetch();
       setIsUpdated(1);
-      upadteUrl(
+      setQueryString(
+        "product",
         searchData.filter,
         searchData.search,
-        currentPage,
-        showProductsOnce
+        paginationData.selectedPage,
+        paginationData.showItems
       );
     }
   }, [searchData.isActive]);
@@ -106,10 +106,14 @@ function Productlist(props) {
   }, [rawProducts]);
 
   useEffect(() => {
-    calculatePagination(showProductsOnce, products);
-  }, [products, currentPage, showProductsOnce]);
+    calculatePagination(
+      paginationData.selectedPage,
+      paginationData.showItems,
+      products
+    );
+  }, [products, paginationData.selectedPage, paginationData.showItems]);
 
-  const calculatePagination = (showProductsOnce, products) => {
+  const calculatePagination = (currentPage, showProductsOnce, products) => {
     let lastIndex = currentPage * showProductsOnce;
     let firstIndex = lastIndex - showProductsOnce;
 
@@ -117,9 +121,9 @@ function Productlist(props) {
 
     setCurrentProducts(products.slice(firstIndex, lastIndex));
 
-    if (totalPages < currentPage) setCurrentPage(1);
+    if (totalPages < currentPage) handleSetSelectedPage(1);
 
-    setTotalPagesNumber(Math.ceil(products.length / showProductsOnce));
+    handleSetTotalPages(Math.ceil(products.length / showProductsOnce));
   };
 
   /**URL QUERY STRING */
@@ -131,62 +135,48 @@ function Productlist(props) {
     handleSetSearchData(previousQueryString.search);
 
     if (!!previousQueryString.items)
-      setShowProductOnce(previousQueryString.items);
+      handleSetShowItems(previousQueryString.items);
 
     if (!!previousQueryString.page) {
       let prevPage = parseInt(previousQueryString.page);
-      let lastIndex = currentPage * showProductsOnce;
-      let firstIndex = lastIndex - showProductsOnce;
+      let lastIndex = paginationData.selectedPage * paginationData.showItems;
+      let firstIndex = lastIndex - paginationData.showItems;
       let maxIndex = products.slice(firstIndex, lastIndex);
-      if (prevPage <= maxIndex) setCurrentPage(prevPage);
+      if (prevPage <= maxIndex) handleSetSelectedPage(prevPage); //setCurrentPage(prevPage);
     }
   }, []);
 
-  // useEffect(() => {
-  //   setCurrentPage(1);
-  // }, [showProductsOnce]);
-
   useEffect(() => {
-    upadteUrl(
-      searchData.filter,
-      searchData.search,
-      currentPage,
-      showProductsOnce
-    );
-  }, [currentPage]);
+    if (paginationData.selectedPage > 1 || isIntialized)
+      setQueryString(
+        "product",
+        searchData.filter,
+        searchData.search,
+        paginationData.selectedPage,
+        paginationData.showItems
+      );
 
-  // 현재 선택한 값에 대한 queryString 셋팅
-  const upadteUrl = (filter, search, page, showProductsOnce) => {
-    let queryString = {
-      category: !filter ? "" : filter,
-      search: !search ? "" : search,
-      page: page < showProductsOnce ? 1 : page,
-      items: showProductsOnce,
-    };
-
-    const newUrl = "?" + setQueryString("product", queryString);
-
-    console.log(newUrl);
-    window.history.pushState(null, null, newUrl);
-  };
+    setIsInitialIzed(true);
+  }, [paginationData.selectedPage, paginationData.showItems]);
 
   return (
     <div className="product-list-wrap">
       <Search />
-      <List
-        currentProductData={currentProducts}
-        productDataLength={products.length}
-      />
-      <div className="list-table-footer">
-        <Pagination
-          getPages={totalPagesNumber}
-          setCurrentPage={setCurrentPage}
-          getSelectedPageNumber={setShowProductOnce}
-          getCurrentPageNumber={
-            currentPage > totalPagesNumber ? 1 : currentPage
-          }
-        />
-      </div>
+      {isLoading ? (
+        <span className="default-text">로딩 중</span>
+      ) : error ? (
+        <span className="default-text">죄송합니다. 오류가 발생했습니다.</span>
+      ) : (
+        <React.Fragment>
+          <List
+            currentProductData={currentProducts}
+            productDataLength={products.length}
+          />
+          <div className="list-table-footer">
+            <Pagination />
+          </div>
+        </React.Fragment>
+      )}
     </div>
   );
 }

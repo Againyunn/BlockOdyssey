@@ -24,6 +24,16 @@ function Search(props) {
   const handleSetSearchData = (data) => dispatch(setSearchData(data));
   const handleSetIsActive = (data) => dispatch(setIsActive(data));
 
+  useEffect(() => {
+    let prevSelectedOption = currentOptionLabel;
+    optionList.map((el) => {
+      if (el.value === searchData.filter) {
+        prevSelectedOption = el.name;
+      }
+    });
+    setCurrentOptionLabel(prevSelectedOption);
+  }, [searchData.filter]);
+
   // 필터 선택 제어
   const handleFilterSelection = (value, name) => {
     handleSetFilterData(value);
@@ -55,7 +65,7 @@ function Search(props) {
             <ul
               className={`select-options ${isShowOptions ? "hidden" : "show"}`}
             >
-              {optionList.map((el) => {
+              {optionList.map((el, idx) => {
                 return (
                   <li
                     className="each-option"
@@ -71,6 +81,7 @@ function Search(props) {
           <input
             className="search-bar"
             type="text"
+            value={!searchData.search ? "" : searchData.search}
             onChange={(e) => handleSearchInput(e)}
           />
           <button

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // data
 import { optionList } from "components/pagination/paginationData/paginationData";
+
+// store
+import { useSelector } from "react-redux";
 
 // style
 import "static/style/css/common.css";
@@ -11,9 +14,17 @@ function PaginationFilter({ selectedNumber }) {
   const [isShowOptions, setShowOptions] = useState(false);
   const [currentOptionLabel, setCurrentOptionLabel] = useState(optionList[0]);
 
+  // store 제어
+  const paginationData = useSelector((state) => state.pagination);
+
+  useEffect(() => {
+    setCurrentOptionLabel(paginationData.showItems);
+  }, [paginationData.showItems]);
+
   // 필터 선택 제어
   const handleFilterSelection = (el) => {
     setCurrentOptionLabel(el);
+    // handleSetShowItems(el);
     selectedNumber(el);
   };
 

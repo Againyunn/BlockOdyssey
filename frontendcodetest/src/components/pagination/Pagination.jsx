@@ -6,20 +6,29 @@ import PaginationFilter from "components/pagination/PaginationFilter";
 // style
 import "static/style/css/pagination.css";
 
-function Pagination({
-  getPages, // 부모 -> 자식
-  setCurrentPage, // 자식 ->  부모 전달
-  getSelectedPageNumber, // 부모 -> 자식 전달
-  getCurrentPageNumber, // 부모 -> 자식 전달
-}) {
+// store
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalPages, setSelectedPage, setShowItems } from "store/pagination";
+
+function Pagination(props) {
   // state
   const [selectedButton, setSelectedButton] = useState(1); // 현재 선택된 버튼
   const [currentButtonArray, setCurrentButtonArray] = useState([]); // 현재 표시될 페이지 번호들
+  const [pageNumberArray, setPageNumberArray] = useState([]);
 
-  const pageNumberArray = [];
-  for (let i = 1; i <= getPages; i++) {
-    pageNumberArray.push(i);
-  }
+  // store 제어
+  const paginationData = useSelector((state) => state.pagination);
+  const dispatch = useDispatch();
+  const handleSetSelectedPage = (value) => dispatch(setSelectedPage(value));
+  const handleSetShowItems = (value) => dispatch(setShowItems(value));
+
+  useEffect(() => {
+    let tmpPageNumberArray = [];
+    for (let i = 1; i <= paginationData.totalPages; i++) {
+      tmpPageNumberArray.push(i);
+    }
+    setPageNumberArray(tmpPageNumberArray);
+  }, [paginationData.totalPages]);
 
   useEffect(() => {
     let tmpPageNumberArray = [...currentButtonArray];
@@ -67,16 +76,16 @@ function Pagination({
     }
 
     setCurrentButtonArray(tmpPageNumberArray);
-    setCurrentPage(selectedButton);
-  }, [selectedButton, getPages]);
+    handleSetSelectedPage(selectedButton);
+  }, [selectedButton, pageNumberArray]);
 
   useEffect(() => {
-    setSelectedButton(getCurrentPageNumber);
-  }, [getCurrentPageNumber]);
+    setSelectedButton(paginationData.selectedPage);
+  }, [paginationData.selectedPage]);
 
   return (
     <div className="pagination-wrap">
-      <PaginationFilter selectedNumber={getSelectedPageNumber} />
+      <PaginationFilter selectedNumber={handleSetShowItems} />
       <button
         className="pagination-button"
         onClick={() => setSelectedButton(1)}
