@@ -16,14 +16,28 @@ export const getQueryString = (type) => {
   return result;
 };
 
-export const setQueryString = (type, queryStringObject) => {
+export const setQueryString = (
+  type,
+  filter,
+  search,
+  page,
+  showProductsOnce
+) => {
   let newUrl = new URLSearchParams("?");
+  let queryStringObject = {};
+
+  queryStringObject.category = !filter ? "" : filter;
+  queryStringObject.search = !search ? "" : search;
+  queryStringObject.page = page < showProductsOnce ? 1 : page;
+  queryStringObject.items = showProductsOnce;
 
   if (type === "product") {
     Object.entries(queryStringObject).map(([key, value]) => {
       newUrl.append(key, value);
     });
   }
+
+  window.history.pushState(null, null, "?" + newUrl);
 
   return newUrl;
 };
