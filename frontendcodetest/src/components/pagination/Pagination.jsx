@@ -70,6 +70,12 @@ function Pagination({ pages, setCurrentPage, selectedPageNumber }) {
       <PaginationFilter selectedNumber={selectedPageNumber} />
       <button
         className="pagination-button"
+        onClick={() => setSelectedButton(1)}
+      >
+        맨앞
+      </button>
+      <button
+        className="pagination-button"
         onClick={() =>
           setSelectedButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
@@ -99,6 +105,12 @@ function Pagination({ pages, setCurrentPage, selectedPageNumber }) {
         }
       >
         <span className="pagination-button-text">후</span>
+      </button>
+      <button
+        className="pagination-button"
+        onClick={() => setSelectedButton(pageNumberArray.length)}
+      >
+        맨뒤
       </button>
     </div>
   );
