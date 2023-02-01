@@ -83,11 +83,11 @@ function Pagination({ pages, setCurrentPage, selectedPageNumber }) {
         <span className="pagination-button-text">전</span>
       </button>
 
-      {currentButtonArray.map((el, idx) => {
+      {currentButtonArray.map((el) => {
         return (
           <button
             className={`pagination-button ${
-              selectedButton === idx + 1 ? "is-selected" : ""
+              selectedButton === el ? "is-selected" : ""
             }`}
             onClick={() => setSelectedButton(el)}
           >
