@@ -1,0 +1,36 @@
+@import "../variable";
+
+// list table style
+.list-table-wrap {
+  background-color: $white;
+  width: 100%;
+
+  .list-table-header {
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+  }
+
+  .list-table-body {
+    height: 40px;
+    line-height: 70px;
+    text-align: center;
+  }
+}
+
+// 크기 조정
+.width-large {
+  width: 150px;
+}
+
+.width-middle {
+  width: 50px;
+}
+
+.width-small {
+  width: 30px;
+}
+
+// 검색 데이터 텍스트 표기
+.search-data-length-text {
+}

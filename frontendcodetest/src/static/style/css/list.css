@@ -1,0 +1,26 @@
+.list-table-wrap {
+  background-color: #fff;
+  width: 100%;
+}
+.list-table-wrap .list-table-header {
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+}
+.list-table-wrap .list-table-body {
+  height: 40px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.width-large {
+  width: 150px;
+}
+
+.width-middle {
+  width: 50px;
+}
+
+.width-small {
+  width: 30px;
+}/*# sourceMappingURL=list.css.map */
