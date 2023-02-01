@@ -7,6 +7,9 @@ import { setIsActive, setFilterData, setSearchData } from "store/product";
 // data
 import { optionList } from "components/search/searchData/searchData";
 
+// image
+import arrow from "assets/icon/up-arrow.png";
+
 // style
 import "static/style/css/common.css";
 import "static/style/css/search.css";
@@ -61,7 +64,14 @@ function Search(props) {
             className="select-box"
             onClick={() => setShowOptions((prev) => !prev)}
           >
-            <label className="select-label">{currentOptionLabel}</label>
+            <div className="select-label">
+              <label>{currentOptionLabel}</label>
+              <img
+                src={arrow}
+                alt=""
+                className={`arrow-icon ${isShowOptions ? "reversed" : ""}`}
+              />
+            </div>
             <ul
               className={`select-options ${isShowOptions ? "hidden" : "show"}`}
             >
@@ -88,7 +98,7 @@ function Search(props) {
             className="default-button"
             onClick={() => handleSetIsActive(true)}
           >
-            검색
+            조회
           </button>
         </div>
       </div>
