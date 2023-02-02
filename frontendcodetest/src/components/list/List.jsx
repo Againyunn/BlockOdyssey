@@ -57,7 +57,7 @@ function List(props) {
             products.map((el, idx) => {
               let thisDescription = !el.description
                 ? ""
-                : getTextSnippet(el.description, 40);
+                : getTextSnippet(el.description, 42);
               let thisPrice = !el.price ? "" : getPriceData(el.price);
               let thisRating = !el.rating ? "" : setComma(el.rating, 2);
               let thisStock = !el.stock ? "" : setComma(el.stock, 3);
