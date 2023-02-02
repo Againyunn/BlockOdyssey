@@ -1,0 +1,65 @@
+@import "../variable";
+
+.ripple-button {
+  position: relative;
+  margin: 0px 3px;
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: $default-border-radius;
+  background-color: $white;
+  overflow: hidden;
+  border: 1px solid $dark-gray;
+  outline: none;
+  cursor: pointer;
+
+  .button-content {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.ripple-button > .ripple {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: $dark-gray;
+  display: block;
+  content: "";
+  border-radius: 9999px;
+  opacity: 1;
+  animation: 0.9s ease 1 forwards ripple-effect;
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(10);
+    opacity: 0.375;
+  }
+  100% {
+    transform: scale(35);
+    opacity: 0;
+  }
+}
+
+.ripple-button > .content {
+  position: relative;
+  z-index: 2;
+}
+
+.none-button-shape {
+  border: none;
+  text-align: center;
+}
+
+.is-selected {
+  background-color: $gray;
+}
