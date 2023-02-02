@@ -106,11 +106,12 @@ function Productlist(props) {
   }, [rawProducts]);
 
   useEffect(() => {
-    calculatePagination(
-      paginationData.selectedPage,
-      paginationData.showItems,
-      products
-    );
+    if (products.length > 0 && paginationData.selectedPage > 0)
+      calculatePagination(
+        paginationData.selectedPage,
+        paginationData.showItems,
+        products
+      );
   }, [products, paginationData.selectedPage, paginationData.showItems]);
 
   const calculatePagination = (currentPage, showProductsOnce, products) => {
@@ -122,8 +123,7 @@ function Productlist(props) {
     setCurrentProducts(products.slice(firstIndex, lastIndex));
 
     if (totalPages < currentPage) handleSetSelectedPage(1);
-
-    handleSetTotalPages(Math.ceil(products.length / showProductsOnce));
+    else handleSetTotalPages(Math.ceil(products.length / showProductsOnce));
   };
 
   /**URL QUERY STRING */
@@ -139,10 +139,7 @@ function Productlist(props) {
 
     if (!!previousQueryString.page) {
       let prevPage = parseInt(previousQueryString.page);
-      let lastIndex = paginationData.selectedPage * paginationData.showItems;
-      let firstIndex = lastIndex - paginationData.showItems;
-      let maxIndex = products.slice(firstIndex, lastIndex);
-      if (prevPage <= maxIndex) handleSetSelectedPage(prevPage); //setCurrentPage(prevPage);
+      handleSetSelectedPage(prevPage);
     }
   }, []);
 

@@ -16,6 +16,9 @@ import edgeArrow from "assets/icon/edge-arrow.png";
 import RippleButton from "components/effectButton/RippleButton";
 
 function Pagination(props) {
+  // activate
+  const [isActive, setIsActive] = useState(false);
+
   // state
   const [selectedButton, setSelectedButton] = useState(1); // 현재 선택된 버튼
   const [currentButtonArray, setCurrentButtonArray] = useState([]); // 현재 표시될 페이지 번호들
@@ -88,7 +91,7 @@ function Pagination(props) {
   }, [paginationData.selectedPage]);
 
   useEffect(() => {
-    if (typeof selectedButton !== "string")
+    if (selectedButton !== " ..." && selectedButton !== "... " && isActive)
       handleSetSelectedPage(selectedButton);
   }, [selectedButton]);
 
@@ -98,7 +101,10 @@ function Pagination(props) {
 
       <RippleButton
         children={<img src={edgeArrow} alt="" className="arrow-icon" />}
-        onClick={() => setSelectedButton(1)}
+        onClick={() => {
+          setSelectedButton(1);
+          setIsActive(true);
+        }}
         buttonType={true}
         isSelected={false}
       />
@@ -107,9 +113,10 @@ function Pagination(props) {
         children={
           <img src={nextArrow} alt="" className="arrow-icon reversed" />
         }
-        onClick={() =>
-          setSelectedButton((prev) => (prev <= 1 ? prev : prev - 1))
-        }
+        onClick={() => {
+          setSelectedButton((prev) => (prev <= 1 ? prev : prev - 1));
+          setIsActive(true);
+        }}
         buttonType={true}
         isSelected={false}
       />
@@ -119,25 +126,35 @@ function Pagination(props) {
           return (
             <RippleButton
               children={el}
-              onClick={() => setSelectedButton(el)}
+              onClick={() => {
+                setSelectedButton(el);
+                setIsActive(true);
+              }}
               buttonType={true}
               isSelected={selectedButton === el ? "is-selected" : ""}
             />
           );
         else
           return (
-            <div className="none-button" onClick={() => setSelectedButton(el)}>
+            <div
+              className="none-button"
+              onClick={() => {
+                setSelectedButton(el);
+                setIsActive(true);
+              }}
+            >
               <span className="default-text">{el}</span>
             </div>
           );
       })}
       <RippleButton
         children={<img src={nextArrow} alt="" className="arrow-icon" />}
-        onClick={() =>
+        onClick={() => {
           setSelectedButton((prev) =>
             prev >= pageNumberArray.length ? prev : prev + 1
-          )
-        }
+          );
+          setIsActive(true);
+        }}
         buttonType={true}
         isSelected={false}
       />
@@ -145,7 +162,10 @@ function Pagination(props) {
         children={
           <img src={edgeArrow} alt="" className="arrow-icon reversed" />
         }
-        onClick={() => setSelectedButton(pageNumberArray.length)}
+        onClick={() => {
+          setSelectedButton(pageNumberArray.length);
+          setIsActive(true);
+        }}
         buttonType={true}
         isSelected={false}
       />

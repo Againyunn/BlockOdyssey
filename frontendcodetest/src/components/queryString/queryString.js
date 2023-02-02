@@ -28,7 +28,7 @@ export const setQueryString = (
 
   queryStringObject.category = !filter ? "" : filter;
   queryStringObject.search = !search ? "" : search;
-  queryStringObject.page = page < showProductsOnce ? 1 : page;
+  queryStringObject.page = page <= showProductsOnce ? page : 1;
   queryStringObject.items = showProductsOnce;
 
   if (type === "product") {
