@@ -80,6 +80,7 @@ function Search(props) {
                   <li
                     className="each-option"
                     name={el.value}
+                    key={`category-option-${idx}`}
                     onClick={() => handleFilterSelection(el.value, el.name)}
                   >
                     {el.name}

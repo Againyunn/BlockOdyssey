@@ -47,7 +47,7 @@ function List(props) {
           <span className="bord-text">재고</span>
         </th>
         {!!products &&
-          products.map((el) => {
+          products.map((el, idx) => {
             let thisDescription = !el.description
               ? ""
               : getTestSnippet(el.description, 40);
@@ -56,7 +56,7 @@ function List(props) {
             let thisStock = !el.stock ? "" : setComma(el.stock, 3);
 
             return (
-              <tr>
+              <tr key={`list-table-content-${idx}`}>
                 <td className="list-table-body horizon-line">
                   <span className="default-text">{el.id}</span>
                 </td>
@@ -72,15 +72,12 @@ function List(props) {
                 </td>
 
                 <td className="list-table-body horizon-line">
-                  {" "}
                   <span className="default-text">{thisPrice}</span>
                 </td>
                 <td className="list-table-body horizon-line">
-                  {" "}
                   <span className="default-text">{thisRating}</span>
                 </td>
                 <td className="list-table-body horizon-line">
-                  {" "}
                   <span className="default-text">{thisStock}</span>
                 </td>
               </tr>

@@ -121,10 +121,11 @@ function Pagination(props) {
         isSelected={false}
       />
 
-      {currentButtonArray.map((el) => {
+      {currentButtonArray.map((el, idx) => {
         if (el !== "... " && el !== " ...")
           return (
             <RippleButton
+              key={`current-page-button-${idx}`}
               children={el}
               onClick={() => {
                 setSelectedButton(el);
@@ -137,6 +138,7 @@ function Pagination(props) {
         else
           return (
             <div
+              key={`current-page-button-${idx}`}
               className="none-button"
               onClick={() => {
                 setSelectedButton(el);

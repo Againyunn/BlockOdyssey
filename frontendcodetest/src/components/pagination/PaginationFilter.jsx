@@ -53,10 +53,11 @@ function PaginationFilter({ selectedNumber }) {
             isShowOptions ? "hidden" : "show"
           }`}
         >
-          {optionList.map((el) => {
+          {optionList.map((el, idx) => {
             return (
               <li
                 className="pagination-each-option"
+                key={`pagination-page-button-${idx}`}
                 onClick={() => handleFilterSelection(el)}
               >
                 {el}
