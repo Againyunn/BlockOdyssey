@@ -17,7 +17,7 @@ import Pagination from "components/pagination/Pagination";
 import Search from "components/search/Search";
 
 // API
-import { getProductData } from "services/Products";
+import { getProductData } from "services/products";
 import {
   getQueryString,
   setQueryString,
