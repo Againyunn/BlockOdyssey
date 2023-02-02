@@ -20,6 +20,12 @@ frontend code test
 2. `npm start`  //로컬에서 실행
 
 
+### [사용된 기술스택]
+html, javascript, css, sass, react.js, redux-toolkit, react-query
+
+
 ### [특이사항]
 
-코딩테스트 개발 명세 페이지에 별도로 서버 배포까지 언급되어 있지 않아, 어떤 환경에서 테스트 될 지 몰라 build 및 배포과정은 수행하지 않았습니다.
+코딩테스트 개발 명세 페이지에 별도로 서버 배포까지는 언급되어 있지 않아, 어떤 환경에서 테스트 될 지 몰라 build 및 배포과정은 수행하지 않았습니다.
+
+감사합니다.
