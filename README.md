@@ -10,7 +10,7 @@ frontend code test
 
 ### 실행방법
 
- react를 실행할 수 있는 환경이 갖추어져있다는 전제로, 하기 2개 코드 실행 시 localhost 환경으로 실행하여 확인할 수 있습니다.
+ react를 실행할 수 있는 환경이 갖추어져있다는 전제로, 하기 3개 코드 실행 시 localhost 환경으로 실행하여 확인할 수 있습니다.
  
 1.  `cd frontendcodetest`  //파일로 진입  
 
