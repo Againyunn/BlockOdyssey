@@ -106,7 +106,7 @@ function Productlist(props) {
   }, [rawProducts]);
 
   useEffect(() => {
-    if (products.length > 0 && paginationData.selectedPage > 0)
+    if (rawProducts.length > 0 && paginationData.selectedPage > 0)
       calculatePagination(
         paginationData.selectedPage,
         paginationData.showItems,
@@ -163,7 +163,7 @@ function Productlist(props) {
         <span className="default-text">로딩 중</span>
       ) : error ? (
         <span className="default-text">죄송합니다. 오류가 발생했습니다.</span>
-      ) : (
+      ) : products.length > 0 ? (
         <React.Fragment>
           <List
             currentProductData={currentProducts}
@@ -173,6 +173,8 @@ function Productlist(props) {
             <Pagination />
           </div>
         </React.Fragment>
+      ) : (
+        <span className="default-text">죄송합니다. 검색 결과가 없습니다.</span>
       )}
     </div>
   );
