@@ -32,7 +32,6 @@ export const extractData = (filter, search, data) => {
       if (!search) return data;
       else {
         data.map((item) => {
-          console.log("item", item);
           if (getKeyByValue(item, convertedSearch)) result.push(item);
         });
       }
