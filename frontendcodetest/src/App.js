@@ -18,7 +18,6 @@ function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <ProductList />
-        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );
