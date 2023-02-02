@@ -4,22 +4,6 @@
   display: flex;
 }
 
-.pagination-button {
-  position: relative;
-  margin: 0px 3px;
-  padding: 2px;
-  width: 30px;
-  height: 30px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: $default-border-radius;
-  background-color: $white;
-  overflow: hidden;
-  border: 1px solid $dark-gray;
-  outline: none;
-  cursor: pointer;
-}
-
 .none-button {
   position: relative;
   margin: 0px 3px;

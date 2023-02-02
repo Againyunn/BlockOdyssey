@@ -13,6 +13,7 @@ import { setSelectedPage, setShowItems } from "store/pagination";
 // image
 import nextArrow from "assets/icon/next-arrow.png";
 import edgeArrow from "assets/icon/edge-arrow.png";
+import RippleButton from "components/effectButton/RippleButton";
 
 function Pagination(props) {
   // state
@@ -94,36 +95,34 @@ function Pagination(props) {
   return (
     <div className="pagination-wrap">
       <PaginationFilter selectedNumber={handleSetShowItems} />
-      <button
-        className="pagination-button"
+
+      <RippleButton
+        children={<img src={edgeArrow} alt="" className="arrow-icon" />}
         onClick={() => setSelectedButton(1)}
-      >
-        <span className="pagination-button-text">
-          <img src={edgeArrow} alt="" className="arrow-icon" />
-        </span>
-      </button>
-      <button
-        className="pagination-button"
+        buttonType={true}
+        isSelected={false}
+      />
+
+      <RippleButton
+        children={
+          <img src={nextArrow} alt="" className="arrow-icon reversed" />
+        }
         onClick={() =>
           setSelectedButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
-      >
-        <span className="pagination-button-text">
-          <img src={nextArrow} alt="" className="arrow-icon reversed" />
-        </span>
-      </button>
+        buttonType={true}
+        isSelected={false}
+      />
 
       {currentButtonArray.map((el) => {
         if (el !== "... " && el !== " ...")
           return (
-            <button
-              className={`pagination-button ${
-                selectedButton === el ? "is-selected" : ""
-              }`}
+            <RippleButton
+              children={el}
               onClick={() => setSelectedButton(el)}
-            >
-              <span className="pagination-button-text">{el}</span>
-            </button>
+              buttonType={true}
+              isSelected={selectedButton === el ? "is-selected" : ""}
+            />
           );
         else
           return (
@@ -132,27 +131,24 @@ function Pagination(props) {
             </div>
           );
       })}
-
-      <button
-        className="pagination-button"
+      <RippleButton
+        children={<img src={nextArrow} alt="" className="arrow-icon" />}
         onClick={() =>
           setSelectedButton((prev) =>
             prev >= pageNumberArray.length ? prev : prev + 1
           )
         }
-      >
-        <span className="pagination-button-text">
-          <img src={nextArrow} alt="" className="arrow-icon" />
-        </span>
-      </button>
-      <button
-        className="pagination-button"
-        onClick={() => setSelectedButton(pageNumberArray.length)}
-      >
-        <span className="pagination-button-text">
+        buttonType={true}
+        isSelected={false}
+      />
+      <RippleButton
+        children={
           <img src={edgeArrow} alt="" className="arrow-icon reversed" />
-        </span>
-      </button>
+        }
+        onClick={() => setSelectedButton(pageNumberArray.length)}
+        buttonType={true}
+        isSelected={false}
+      />
     </div>
   );
 }
