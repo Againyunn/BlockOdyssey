@@ -69,7 +69,7 @@ function Search(props) {
               <img
                 src={arrow}
                 alt=""
-                className={`arrow-icon ${isShowOptions ? "reversed" : ""}`}
+                className={`arrow-icon ${isShowOptions ? "" : "reversed"}`}
               />
             </div>
             <ul
