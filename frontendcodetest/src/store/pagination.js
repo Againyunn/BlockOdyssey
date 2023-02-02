@@ -4,7 +4,7 @@ export const paginationReducer = createSlice({
   name: "pagination",
   initialState: {
     totalPages: 0,
-    selectedPage: 0,
+    selectedPage: 1,
     showItems: 10,
     totalItemLength: 0,
   },

@@ -106,7 +106,7 @@ function Productlist(props) {
   }, [rawProducts]);
 
   useEffect(() => {
-    if (rawProducts.length > 0 && paginationData.selectedPage > 0)
+    if (rawProducts.length > 0)
       calculatePagination(
         paginationData.selectedPage,
         paginationData.showItems,
