@@ -160,9 +160,13 @@ function Productlist(props) {
     <div className="product-list-wrap">
       <Search />
       {isLoading ? (
-        <span className="default-text">로딩 중</span>
+        <div className="set-vertical-center">
+          <span className="default-text">로딩 중...</span>
+        </div>
       ) : error ? (
-        <span className="default-text">죄송합니다. 오류가 발생했습니다.</span>
+        <div className="set-vertical-center">
+          <span className="default-text">죄송합니다. 오류가 발생했습니다.</span>
+        </div>
       ) : products.length > 0 ? (
         <React.Fragment>
           <List
@@ -174,7 +178,11 @@ function Productlist(props) {
           </div>
         </React.Fragment>
       ) : (
-        <span className="default-text">죄송합니다. 검색 결과가 없습니다.</span>
+        <div className="set-vertical-center">
+          <span className="default-text">
+            죄송합니다. 검색 결과가 없습니다.
+          </span>
+        </div>
       )}
     </div>
   );
