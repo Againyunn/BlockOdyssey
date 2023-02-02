@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // components
 import PaginationFilter from "components/pagination/PaginationFilter";
+import RippleButton from "components/effectButton/RippleButton";
 
 // style
 import "static/style/css/pagination.css";
@@ -13,7 +14,6 @@ import { setSelectedPage, setShowItems } from "store/pagination";
 // image
 import nextArrow from "assets/icon/next-arrow.png";
 import edgeArrow from "assets/icon/edge-arrow.png";
-import RippleButton from "components/effectButton/RippleButton";
 
 function Pagination(props) {
   // activate

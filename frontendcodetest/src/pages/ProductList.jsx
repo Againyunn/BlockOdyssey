@@ -10,6 +10,10 @@ import { setTotalPages, setSelectedPage, setShowItems } from "store/pagination";
 
 // function
 import { extractData } from "components/list/ListFunctions";
+import {
+  getQueryString,
+  setQueryString,
+} from "components/queryString/queryString";
 
 // components
 import List from "components/list/List";
@@ -18,10 +22,6 @@ import Search from "components/search/Search";
 
 // API
 import { getProductData } from "services/products";
-import {
-  getQueryString,
-  setQueryString,
-} from "components/queryString/queryString";
 
 // style
 import "static/style/css/common.css";

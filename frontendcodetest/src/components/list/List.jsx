@@ -1,9 +1,11 @@
+import React, { useState, useEffect } from "react";
+
+// function
 import {
   getPriceData,
-  getTestSnippet,
+  getTextSnippet,
   setComma,
 } from "components/text/textFormatter";
-import React, { useState, useEffect } from "react";
 
 // style
 import "static/style/css/common.css";
@@ -55,7 +57,7 @@ function List(props) {
             products.map((el, idx) => {
               let thisDescription = !el.description
                 ? ""
-                : getTestSnippet(el.description, 40);
+                : getTextSnippet(el.description, 40);
               let thisPrice = !el.price ? "" : getPriceData(el.price);
               let thisRating = !el.rating ? "" : setComma(el.rating, 2);
               let thisStock = !el.stock ? "" : setComma(el.stock, 3);

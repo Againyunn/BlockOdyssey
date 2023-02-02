@@ -1,4 +1,4 @@
-export const getTestSnippet = (data, maxLength) => {
+export const getTextSnippet = (data, maxLength) => {
   let result = data;
   if (data.length > maxLength) {
     result = data.substr(0, maxLength - 2) + "...";
