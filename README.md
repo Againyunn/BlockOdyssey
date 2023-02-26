@@ -1,3 +1,9 @@
+### [개발화면 예시]
+
+![project_result1](/result1.gif)
+
+![project_result2](/result2.gif)
+
 ### [실행방법]
 
 react를 실행할 수 있는 환경이 갖추어져있다는 전제로, 하기 3개 코드 실행 시 localhost 환경으로 실행하여 확인할 수 있습니다.
@@ -55,7 +61,6 @@ html, javascript, css, sass, react.js, redux-toolkit, react-query
    ├── product.js
    └── store.js
 ```
-   
 
 2. 스타일 제어 구조
 
@@ -87,14 +92,13 @@ html, javascript, css, sass, react.js, redux-toolkit, react-query
    ├── pagination.scss
    ├── productList.scss
    └── search.scss
-   ```
+```
 
 ### [핵심 기능 구현 설명]
 
 1. 페이지네이션, 검색, API 데이터 기능 구조화
 
 ![project_structure_diagram](/project_structure.svg)
-
 
 2. 절대참조 기능 적용
 
@@ -121,4 +125,3 @@ page는 실질적으로 각 페이지에서 구현해야 하는 기능을 제어
 각 하위 컴포넌트는 UI적인 측면에 초점을 맞추어 실질적인 화면을 그리고 사용자가 제어하는 값을 반영하는 기능을 수행해하도록 구조화하였습니다.
 또한 components 하위에 각 기능별로 컴포넌트를 구성하고 내부에 함수를 정의하여 재사용성 및 확장성을 고려하였습니다.
 나아가 UI적인 요소가 중요한 컴포넌트는 전역상태 대신 props를 통한 상태값 제어를 통해 타 기능 및 페이지에서의 사용이 용이하도록 구현했습니다.
-
